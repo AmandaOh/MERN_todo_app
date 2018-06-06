@@ -4,7 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --exec babel-node lib/index.js"
+    "start": "nodemon --exec babel-node lib/index.js",
+    "build": "babel lib -d dist",
+    "serve": "node dist/index.js",
+    "postinstall": "yarn run build && yarn run serve",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "dependencies": {
     "cors": "^2.8.4",

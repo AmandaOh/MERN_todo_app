@@ -35,7 +35,7 @@ class App extends Component {
           <ul>
             {this.state.data.map((item) =>
               <li>
-                <input key={item.id} placeholder={item.todo}></input>
+                <input key={item._id} value={item.todo} className="todo-input"></input>
               </li>
             )}
           </ul>

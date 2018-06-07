@@ -17,7 +17,7 @@ class App extends Component {
 
   async getTodos() {
     try {
-      const response = await fetch('http://localhost:3001');
+      const response = await fetch('/todos');
       return response.json();
     } catch (err) {
       console.log(err)

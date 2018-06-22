@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List, Map } from 'immutable';
 import logo from './logo.svg';
 import './App.css';
 
@@ -6,13 +7,13 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: List([])
     };
   }
 
   async componentDidMount() {
     const todos = await this.getTodos();
-    this.setState({data: todos});
+    this.setState({data: List(todos)});
   }
 
   async getTodos() {
@@ -22,6 +23,16 @@ class App extends Component {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  handleChange(id, e) {
+    const currentTodos = this.state.data;
+    const indexToUpdate = currentTodos.findIndex(item => item._id === id);
+    const updatedTodos = currentTodos.update(indexToUpdate, item => Map(item).set("todo", e.target.value).toObject());
+
+    this.setState({
+      data: updatedTodos
+    });
   }
 
   render() {
@@ -35,7 +46,7 @@ class App extends Component {
           <ul>
             {this.state.data.map((item) =>
               <li>
-                <input key={item._id} value={item.todo} className="todo-input"></input>
+                <input key={item._id} type="text" value={item.todo} onChange={(e) => this.handleChange(item._id, e)} className="todo-input" />
               </li>
             )}
           </ul>

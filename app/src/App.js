@@ -35,6 +35,30 @@ class App extends Component {
     });
   }
 
+  handleKeyDown(id ,e) {
+    if(e.key === 'Enter') {
+      this.updateTodoList(id, e.target.value);
+    }
+  }
+
+  async updateTodoList(id, updatedTodo) {
+    try {
+      const response = await fetch(`/todos/${id}`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          _id: id,
+          todo: updatedTodo
+        })
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -46,7 +70,12 @@ class App extends Component {
           <ul>
             {this.state.data.map((item) =>
               <li>
-                <input key={item._id} type="text" value={item.todo} onChange={(e) => this.handleChange(item._id, e)} className="todo-input" />
+                <input key={item._id}
+                  type="text"
+                  value={item.todo}
+                  onChange={(e) => this.handleChange(item._id, e)}
+                  onKeyDown={(e) => this.handleKeyDown(item._id, e)}
+                  className="todo-input" />
               </li>
             )}
           </ul>

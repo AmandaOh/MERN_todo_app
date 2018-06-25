@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { List, Map } from 'immutable';
+import Icon from '@material-ui/core/Icon';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -76,6 +78,7 @@ class App extends Component {
                   onChange={(e) => this.handleChange(item._id, e)}
                   onKeyDown={(e) => this.handleKeyDown(item._id, e)}
                   className="todo-input" />
+                <Icon color="primary">add_circle</Icon>
               </li>
             )}
           </ul>

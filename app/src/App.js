@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { List, Map } from 'immutable';
+import React, {Component} from 'react';
+import {List, Map} from 'immutable';
 import Icon from '@material-ui/core/Icon';
 
 import logo from './logo.svg';
@@ -27,18 +27,15 @@ class App extends Component {
     }
   }
 
-  handleChange(id, e) {
+  handleChange(index, e) {
     const currentTodos = this.state.data;
-    const indexToUpdate = currentTodos.findIndex(item => item._id === id);
-    const updatedTodos = currentTodos.update(indexToUpdate, item => Map(item).set("todo", e.target.value).toObject());
+    const updatedTodos = currentTodos.update(index, item => Map(item).set("todo", e.target.value).toObject());
 
-    this.setState({
-      data: updatedTodos
-    });
+    this.setState({data: updatedTodos});
   }
 
-  handleKeyDown(id ,e) {
-    if(e.key === 'Enter') {
+  handleKeyDown(id, e) {
+    if (e.key === 'Enter') {
       this.updateTodoList(id, e.target.value);
     }
   }
@@ -49,56 +46,45 @@ class App extends Component {
         method: 'POST',
         headers: {
           Accept: 'application/json',
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          _id: id,
-          todo: updatedTodo
-        })
+        body: JSON.stringify({id: id, todo: updatedTodo})
       });
     } catch (err) {
       console.log(err);
     }
   }
 
-  addAnotherRow(id, e) {
-      const currentTodos = this.state.data;
-      const index = currentTodos.findIndex(item => item.id === id) + 1;
+  addAnotherRow(index, e) {
+    const currentTodos = this.state.data;
+    const lastId = currentTodos.get(-1).id;
 
-      const updatedTodos = currentTodos.insert(index, {
-        id: index + 1,
-        todo: ""
-      })
+    const updatedTodos = currentTodos.insert(index + 1, {
+      id: lastId + 1,
+      todo: ""
+    })
 
-      this.setState({
-        data: updatedTodos
-      })
+    this.setState({data: updatedTodos})
   }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Todo List with React</h1>
-        </header>
-        {this.state.data &&
-          <ul>
-            {this.state.data.map((item) =>
+    return (<div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo"/>
+        <h1 className="App-title">Todo List with React</h1>
+      </header>
+      {
+        this.state.data && <ul>
+            {
+              this.state.data.map((item, index) =>
               <li>
-                <input key={item._id}
-                  type="text"
-                  value={item.todo}
-                  onChange={(e) => this.handleChange(item._id, e)}
-                  onKeyDown={(e) => this.handleKeyDown(item._id, e)}
-                  className="todo-input" />
-                <Icon color="primary" onClick={(e) => this.addAnotherRow(item.id, e)} className="add-todo">add_circle</Icon>
-              </li>
-            )}
+                <input key={item._id} type="text" value={item.todo} onChange={(e) => this.handleChange(index, e)} onKeyDown={(e) => this.handleKeyDown(item.id, e)} className="todo-input"/>
+                <Icon color="primary" onClick={(e) => this.addAnotherRow(index, e)} className="add-todo">add_circle</Icon>
+              </li>)
+            }
           </ul>
-        }
-      </div>
-    );
+      }
+    </div>);
   }
 }
 

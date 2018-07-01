@@ -33,3 +33,7 @@
   border: none;
   padding: 2%;
 }
+
+.add-todo {
+  cursor: pointer;
+}

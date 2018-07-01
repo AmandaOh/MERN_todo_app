@@ -61,6 +61,20 @@ class App extends Component {
     }
   }
 
+  addAnotherRow(id, e) {
+      const currentTodos = this.state.data;
+      const index = currentTodos.findIndex(item => item.id === id) + 1;
+
+      const updatedTodos = currentTodos.insert(index, {
+        id: index + 1,
+        todo: ""
+      })
+
+      this.setState({
+        data: updatedTodos
+      })
+  }
+
   render() {
     return (
       <div className="App">
@@ -78,7 +92,7 @@ class App extends Component {
                   onChange={(e) => this.handleChange(item._id, e)}
                   onKeyDown={(e) => this.handleKeyDown(item._id, e)}
                   className="todo-input" />
-                <Icon color="primary">add_circle</Icon>
+                <Icon color="primary" onClick={(e) => this.addAnotherRow(item.id, e)} className="add-todo">add_circle</Icon>
               </li>
             )}
           </ul>

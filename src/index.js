@@ -4,7 +4,7 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
-import TodoSchema from '../data/models/Todo';
+import TodoSchema from './data/models/Todo';
 
 require('dotenv').config();
 

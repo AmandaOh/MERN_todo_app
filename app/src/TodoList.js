@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {List, Map} from 'immutable';
 import Icon from '@material-ui/core/Icon';
 
+import Todo from './Todo';
+
 class TodoList extends Component {
   constructor() {
     super();
@@ -24,14 +26,14 @@ class TodoList extends Component {
     }
   }
 
-  handleChange(index, e) {
+  handleChange = (index, e) => {
     const currentTodos = this.state.data;
     const updatedTodos = currentTodos.update(index, item => Map(item).set("todo", e.target.value).toObject());
 
     this.setState({data: updatedTodos});
   }
 
-  handleKeyDown(id, e) {
+  handleKeyDown = (id, e) => {
     if (e.key === 'Enter') {
       this.updateTodoList(id, e.target.value);
     }
@@ -70,7 +72,7 @@ class TodoList extends Component {
             {
               this.state.data.map((item, index) =>
               <li>
-                <input key={item._id} type="text" value={item.todo} onChange={(e) => this.handleChange(index, e)} onKeyDown={(e) => this.handleKeyDown(item.id, e)} className="todo-input"/>
+                <Todo todo={item} index={index} handleChange={this.handleChange} handleKeyDown={this.handleKeyDown} />
                 <Icon color="primary" onClick={(e) => this.addAnotherRow(index, e)} className="add-todo">add_circle</Icon>
               </li>)
             }

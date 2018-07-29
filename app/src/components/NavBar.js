@@ -20,7 +20,8 @@ const styles = {
     marginRight: 20,
   },
   appBar: {
-    background: '#e88876'
+    background: '#e88876',
+    marginBottom: '2%',
   },
 };
 

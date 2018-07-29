@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
-import './Todo.css';
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = {
+  todoInput: {
+    width: '80%',
+    'font-size': '1em',
+    border: 'none',
+    padding: '2%',
+  }
+}
 
 class Todo extends Component {
 
   render() {
-    const {todo, index, handleChange, handleKeyDown} = this.props;
+    const {todo, index, handleChange, handleKeyDown, classes} = this.props;
 
     return (
       <input key={todo._id}
@@ -12,9 +21,8 @@ class Todo extends Component {
              value={todo.todo}
              onChange={(e) => handleChange(index, e)}
              onKeyDown={(e) => handleKeyDown(todo.id, e)}
-             className="todo-input"/>
+             className={classes.todoInput}/>
     );
   }
 }
-
-export default Todo;
+export default withStyles(styles)(Todo);

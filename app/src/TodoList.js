@@ -6,9 +6,16 @@ import Icon from '@material-ui/core/Icon';
 import Todo from './Todo';
 
 const styles = {
+  root: {
+    margin: 'auto',
+    width: '50%',
+  },
   addCircle: {
     color: '#76d6e8',
   },
+  addTodo: {
+    cursor: 'pointer',
+  }
 }
 
 class TodoList extends Component {
@@ -77,7 +84,7 @@ class TodoList extends Component {
     const { classes } = this.props;
 
     return(this.state.data &&
-          <ul className="Todo-list">
+          <ul className={classes.root}>
             {
               this.state.data.map((item, index) =>
               <li>

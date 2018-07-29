@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.2.3",
+    "@material-ui/icons": "^2.0.0",
     "jest-enzyme": "^6.0.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

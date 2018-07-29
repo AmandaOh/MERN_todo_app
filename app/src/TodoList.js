@@ -1,8 +1,15 @@
-import React, {Component} from 'react';
-import {List, Map} from 'immutable';
+import React, { Component } from 'react';
+import { List, Map } from 'immutable';
+import { withStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 
 import Todo from './Todo';
+
+const styles = {
+  addCircle: {
+    color: '#76d6e8',
+  },
+}
 
 class TodoList extends Component {
   constructor() {
@@ -67,13 +74,15 @@ class TodoList extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     return(this.state.data &&
           <ul className="Todo-list">
             {
               this.state.data.map((item, index) =>
               <li>
                 <Todo todo={item} index={index} handleChange={this.handleChange} handleKeyDown={this.handleKeyDown} />
-                <Icon color="primary" onClick={(e) => this.addAnotherRow(index, e)} className="add-todo">add_circle</Icon>
+                <Icon onClick={(e) => this.addAnotherRow(index, e)} className="add-todo" classes={{ root: classes.addCircle }}>add_circle</Icon>
               </li>)
             }
           </ul>
@@ -82,4 +91,4 @@ class TodoList extends Component {
 
 }
 
-export default TodoList;
+export default withStyles(styles)(TodoList);

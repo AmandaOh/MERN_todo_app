@@ -68,7 +68,7 @@ class TodoList extends Component {
 
   render() {
     return(this.state.data &&
-          <ul>
+          <ul className="Todo-list">
             {
               this.state.data.map((item, index) =>
               <li>

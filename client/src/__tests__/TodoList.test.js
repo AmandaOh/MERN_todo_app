@@ -1,20 +1,20 @@
 import React from 'react';
 
-import TodoList from '../TodoList';
+import {_TestTodoList} from '../TodoList';
 
 describe('TodoList', () => {
+    beforeEach(() => {
+      fetch.resetMocks();
+    });
+
     describe('getTodos', () => {
         it('returns a a list of todos', async () => {
-          const component = shallow(<TodoList />);
+          const component = shallow(<_TestTodoList classes={{root: ""}} />);
           const response = {
             data: ["todo1", "todo2"]
           };
     
-          window.fetch = jest.fn().mockImplementationOnce(() => {
-            return {
-              json: () => new Promise((resolve, reject) => resolve(response))
-            };
-          });
+          fetch.mockResponse(JSON.stringify(response));
     
           const todos = await component.instance().getTodos();
     

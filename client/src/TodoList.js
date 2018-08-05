@@ -99,3 +99,4 @@ class TodoList extends Component {
 }
 
 export default withStyles(styles)(TodoList);
+export {TodoList as _TestTodoList};

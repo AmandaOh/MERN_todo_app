@@ -1,11 +1,11 @@
 import React from 'react';
 
-import App from '../App';
+import {_TestApp} from '../App';
 import TodoList from '../TodoList';
 
 describe('App', () => {
     it('renders TodoList', () => {
-        const component = shallow(<App />);
+        const component = shallow(<_TestApp classes={{root: ""}} />);
 
         expect(component.find(TodoList)).toExist();
     });

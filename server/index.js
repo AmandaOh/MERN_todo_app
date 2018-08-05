@@ -3,12 +3,14 @@ import cors from 'cors';
 import path from 'path';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import passport from 'passport';
 
 import TodoSchema from './data/models/Todo';
 
 require('dotenv').config();
 
 const app = express();
+
 const port = process.env.PORT || 3001;
 const jsonParser = bodyParser.json();
 
@@ -22,6 +24,7 @@ connection.on('open', () => {
 const Todo = mongoose.model('Todo', TodoSchema, 'todo_list');
 
 app.use(express.static(path.join(__dirname, "..", "app", "build")))
+app.use(passport.initialize());
 
 app.get('/todos', cors(), (req, res) => {
   Todo.find({}, (err, todos) => {

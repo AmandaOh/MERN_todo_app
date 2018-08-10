@@ -55,7 +55,7 @@ class TodoList extends Component {
 
   async updateTodoList(id, updatedTodo) {
     try {
-      const response = await fetch(`/todos/${id}`, {
+      await fetch(`/todos/${id}`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -68,7 +68,7 @@ class TodoList extends Component {
     }
   }
 
-  addAnotherRow(index, e) {
+  addAnotherRow(index) {
     const currentTodos = this.state.data;
     const lastId = currentTodos.get(-1).id;
 
@@ -86,10 +86,10 @@ class TodoList extends Component {
     return(this.state.data &&
           <ul className={classes.root}>
             {
-              this.state.data.map((item, index) =>
-              <li>
+            this.state.data.map((item, index) =>
+              <li key={item.id}>
                 <Todo todo={item} index={index} handleChange={this.handleChange} handleKeyDown={this.handleKeyDown} />
-                <Icon onClick={(e) => this.addAnotherRow(index, e)} className="add-todo" classes={{ root: classes.addCircle }}>add_circle</Icon>
+                <Icon onClick={() => this.addAnotherRow(index)} className="add-todo" classes={{ root: classes.addCircle }}>add_circle</Icon>
               </li>)
             }
           </ul>

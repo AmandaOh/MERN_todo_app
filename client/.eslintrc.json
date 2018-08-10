@@ -1,0 +1,31 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "strict": 0,
+    "no-console": "off",
+    "react/prop-types": 0
+  },
+  "plugins": [
+    "react",
+    "react-native-globals"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
+  ],
+  "env": {
+    "jest": true,
+    "react-native-globals/all": true
+  },    
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "globals": {
+    "shallow": false,
+    "mount": false,
+    "document": false,
+    "URL": false
+  } 
+}  

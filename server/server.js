@@ -23,7 +23,7 @@ connection.on('open', () => {
 
 const Todo = mongoose.model('Todo', TodoSchema, 'todo_list');
 
-app.use(express.static(path.join(__dirname, "..", "app", "build")))
+app.use(express.static(path.join(__dirname, "..", "client", "build")))
 app.use(passport.initialize());
 
 app.get('/todos', cors(), (req, res) => {
@@ -50,7 +50,7 @@ app.post('/todos/:todoId', jsonParser, (req, res) => {
 })
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "app", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

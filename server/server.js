@@ -7,7 +7,7 @@ import passport from 'passport';
 
 import TodoSchema from './data/models/Todo';
 
-require('dotenv').config();
+require('dotenv').config({path: '../.env'});
 
 const app = express();
 

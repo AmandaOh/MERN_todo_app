@@ -8,7 +8,8 @@
     "serve": "node dist/server.js",
     "start": "npm run build && npm run serve",
     "test": "jest",
-    "heroku-postbuild": "npm run build --prefix ./client"
+    "heroku-postbuild": "npm run build --prefix ./client",
+    "lint": "npm run lint --prefix ./client"
   },
   "dependencies": {
     "@material-ui/core": "^1.2.3",

@@ -1,11 +1,8 @@
 import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema,
-ObjectId = Schema.ObjectId;
-
-const TodoSchema = new Schema({
+const TodoSchema = new mongoose.Schema({
   id: Number,
-  todo: String
+  todo: Stringz
 });
 
 export default TodoSchema;

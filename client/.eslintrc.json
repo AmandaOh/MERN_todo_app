@@ -17,10 +17,6 @@
   "env": {
     "jest": true,
     "react-native-globals/all": true
-  },    
-  "parserOptions": {
-    "ecmaVersion": 2017,
-    "sourceType": "module"
   },
   "globals": {
     "shallow": false,

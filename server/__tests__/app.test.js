@@ -1,6 +1,6 @@
 import request from 'supertest';
 
-import app from '../../server/server';
+import app from '../app';
 
 describe('get', () => {
   test('should return list of todos', async () => {

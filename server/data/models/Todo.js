@@ -5,4 +5,4 @@ const TodoSchema = new mongoose.Schema({
   todo: String
 });
 
-export default TodoSchema;
+export default mongoose.model('Todo', TodoSchema, 'todo_list');;

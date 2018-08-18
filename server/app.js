@@ -12,12 +12,14 @@ require('dotenv').config({path: require('find-config')('.env')});
 const app = express();
 const jsonParser = bodyParser.json();
 
-mongoose.connect(process.env.DB);
-const connection = mongoose.connection;
+if (process.env.NODE_ENV !== 'test') {
+  mongoose.connect(process.env.DB);
+  const connection = mongoose.connection;
 
-connection.on('open', () => {
-  console.log('mongo db is connected!');
-}); 
+  connection.on('open', () => {
+    console.log('mongo db is connected!');
+  });
+} 
 
 app.use(express.static(path.join(__dirname, "..", "client", "build")))
 app.use(passport.initialize());

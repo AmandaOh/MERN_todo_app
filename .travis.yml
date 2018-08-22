@@ -1,11 +1,14 @@
 language: node_js
 node_js:
-  - "8.11.3"
+  - 8.11.3
 cache:
   directories:
-    - "node_modules"
+  - node_modules
 script:
-  - npm run lint
-  - npm test    
-
-
+- npm run lint
+- npm test
+deploy:
+  provider: heroku
+  api_key:
+    secure: xMl2Cr+oCgI+Id0/yWdJdKJ+rjsGn9GQro62afdddXi3UZGe50NOHyvbnHAJ5S8PKIRf9O8DOeYbSS1Jv2tnifF1Vl6SI8fZx67GigDGQLryxrISgmXEUllvVUx2K6a1ewimhV1HK2dx44j8CEe3vhFwxaCYDDzqAMKLAFSsnqcNyXJQGxp6UnLJHRsv64lr7P2lmMfmInPLrgQ3JtexjT2T5PoFaC7Vm0ToJWk2dcgmXBVBp1PIB8IC2J0zx0FJgQNdMYk4GqMZMTvN0MiwwRXZcltK2dPewlHsjbA7MFYA3ZKWU6GolUY2myYvjy5DCIALvrqgVXwc5o/yImFLphBjM9bsZkkeXQFr8JjruodPuQV/iIXMavmJJjFj76sQDmEsJjs2NjP5D5VJFPMOKR8dIgo2XQHA3NZf4gOxHHapJtSL9sXn0aAVF23oxTQgV4aTV6GhR4caMRR8eT7kDIcHi9fvm4fJvF/Qma51CA1W6ucO+X1mMW2D6TLhRzVnO9A6LmgJCIYxLhoUivNq1AXwJIYFlFfu/MqrNg5YOPqd0tpyozd9GhZar84PqowMf1vog1Y7l69r2HaQceIy8EMbFhzsIaNdnMpATKrGN5c1hxNrVIk7RqQXTVLZ+9oYjBK6cF/RpAtmksmkGbmuG2mdweO52WwpQlR62dQ+uqk=
+  app: mern-todo-list
